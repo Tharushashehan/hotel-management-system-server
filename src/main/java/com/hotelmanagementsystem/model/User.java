@@ -29,45 +29,45 @@ public class User  implements Serializable {
     @SequenceGenerator(name = "user_Sequence", sequenceName = "USER_SEQ")
     private Long id;
     
-    @Column(name = "emp_id", nullable = false)
-    private String emp_id;
+    @Column(name = "userId", nullable = false)
+    private String userId;
     
-    @Column(name = "first_name", nullable = true)
-    private String first_name;
+    @Column(name = "userFName", nullable = true)
+    private String userFName;
     
-    @Column(name = "last_name", nullable = true)
-    private String last_name;
+    @Column(name = "userLName", nullable = true)
+    private String userLName;
     
-    @Column(name = "NIC_no", nullable = true)
-    private String NIC_no;
+    @Column(name = "userNIC", nullable = true)
+    private String userNIC;
     
-    @Column(name = "email_addrs", nullable = true)
-    private String email_addrs;
+    @Column(name = "userEmail", nullable = true)
+    private String userEmail;
     
-    @Column(name = "user_type", nullable = true)
-    private String user_type;
+    @Column(name = "userType", nullable = true)
+    private String userType;
     
-    @Column(name = "user_image", nullable = true)
-    private String user_image;
+    @Column(name = "userImage", nullable = true)
+    private String userImage;
     
-    @Column(name = "user_addrs", nullable = true)
-    private String user_addrs;
+    @Column(name = "userAddrs", nullable = true)
+    private String userAddrs;
     
-    @Column(name = "user_password", nullable = true)
-    private String user_password;
+    @Column(name = "userPassword", nullable = true)
+    private String userPassword;
     
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "createdAt", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updatedAt", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
     
-    @Column(name = "status_code", nullable = false)
+    @Column(name = "statusCode", nullable = false)
     @Value("${some.key:true}")
-    private boolean status_code;
+    private boolean statusCode;
     
 }

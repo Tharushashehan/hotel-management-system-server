@@ -18,7 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Data
 @Getter
 @Setter
-@Table(name = "user")
+@Table(name = "room")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
 public class RoomDetails  implements Serializable {

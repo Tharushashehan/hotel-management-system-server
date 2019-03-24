@@ -26,6 +26,7 @@ public class UserController {
 	//Create User
 	@PostMapping("/create")
 	public User createUser(@Valid @RequestBody User user) {
+		System.out.println(user);
 	    return userRepository.save(user);
 	}
 	
@@ -43,25 +44,25 @@ public class UserController {
 	    User user = userRepository.findById(userId)
 	            .orElseThrow(() -> new ResourceNotFoundException("user", "id", userId));
 
-	    user.setFirst_name(userDetails.getFirst_name());
-	    user.setLast_name(userDetails.getLast_name());
-	    user.setUser_type(userDetails.getUser_type());
-	    user.setUser_image(userDetails.getUser_image());
-	    user.setUser_addrs(userDetails.getUser_addrs());
-	    user.setUser_password(userDetails.getUser_password());
+	    user.setUserFName(userDetails.getUserFName());
+	    user.setUserLName(userDetails.getUserLName());
+	    user.setUserType(userDetails.getUserType());
+	    user.setUserImage(userDetails.getUserImage());
+	    user.setUserAddrs(userDetails.getUserAddrs());
+	    user.setUserPassword(userDetails.getUserPassword());
 
 	    User updatedNode = userRepository.save(user);
 	    return updatedNode;
 	}
 	
 	// Delete a user
-	@PutMapping("/delete-user/{id}")
+	@DeleteMapping("/delete-user/{id}")
 	public User deleteUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
 
 	    User user = userRepository.findById(userId)
 	            .orElseThrow(() -> new ResourceNotFoundException("user", "id", userId));
 	    
-	    user.setStatus_code(false);
+	    user.setStatusCode(false);
 
 	    User deletedNote = userRepository.save(user);
 	    return deletedNote;
