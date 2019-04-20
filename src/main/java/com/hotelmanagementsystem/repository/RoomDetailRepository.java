@@ -3,10 +3,10 @@ package com.hotelmanagementsystem.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import com.hotelmanagementsystem.model.User;
+import com.hotelmanagementsystem.model.RoomDetails;
 
 @RepositoryRestResource
-public interface UserRepository extends JpaRepository <User, Long> {
+public interface RoomDetailRepository extends JpaRepository <RoomDetails, Long> {
 	
 }
 

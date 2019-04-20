@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-
 @SpringBootApplication
 @RestController
 @EnableJpaAuditing
@@ -20,12 +19,12 @@ public class HotelManagementSystemApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HotelManagementSystemApplication.class, args);
 	}
-	
+
 	@RequestMapping("/test")
 	public String testRestCall() {
 		return "Hello this is a test rest call";
 	}
-	
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
@@ -36,6 +35,4 @@ public class HotelManagementSystemApplication {
 		};
 	}
 
-
 }
-
