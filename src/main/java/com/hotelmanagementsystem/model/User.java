@@ -1,6 +1,8 @@
 package com.hotelmanagementsystem.model;
 
 import javax.persistence.Entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
@@ -21,7 +23,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Setter
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
+//@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, allowGetters = true)
 public class User  implements Serializable {
 	
     @Id
@@ -53,19 +55,23 @@ public class User  implements Serializable {
     @Column(name = "userAddrs", nullable = true)
     private String userAddrs;
     
+    @JsonIgnore
     @Column(name = "userPassword", nullable = true)
     private String userPassword;
     
+    @JsonIgnore
     @Column(name = "createdAt", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;
 
+    @JsonIgnore
     @Column(name = "updatedAt", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
     
+    @JsonIgnore
     @Column(name = "statusCode", nullable = false)
     @Value("${some.key:true}")
     private boolean statusCode;

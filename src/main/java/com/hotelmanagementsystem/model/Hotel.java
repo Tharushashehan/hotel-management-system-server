@@ -1,5 +1,6 @@
 package com.hotelmanagementsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
@@ -28,36 +29,39 @@ public class Hotel  implements Serializable {
     @SequenceGenerator(name = "hotel_Sequence", sequenceName = "HOTEL_SEQ")
     private Long id;
     
-    @Column(name = "hotel_id", nullable = false)
-    private String hotel_id;
+    @Column(name = "hotelID", nullable = false)
+    private String hotelID;
     
-    @Column(name = "hotel_name", nullable = true)
-    private String hotel_name;
+    @Column(name = "hotelName", nullable = true)
+    private String hotelName;
     
-    @Column(name = "hotel_addrs", nullable = true)
-    private String hotel_addrs;
+    @Column(name = "hotelAddress", nullable = true)
+    private String hotelAddress;
     
-    @Column(name = "hotel_email_addrs", nullable = true)
-    private String hotel_email_addrs;
+    @Column(name = "hotelEmail", nullable = true)
+    private String hotelEmail;
     
-    @Column(name = "hotel_web_addrs", nullable = true)
-    private String hotel_web_addrs;
+    @Column(name = "hotelWebSite", nullable = true)
+    private String hotelWebSite;
     
-    @Column(name = "hotel_image", nullable = true)
-    private String hotel_image;
+    @Column(name = "hotelImage", nullable = true)
+    private String hotelImage;
     
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @JsonIgnore
+    @Column(name = "createdAt", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @JsonIgnore
+    @Column(name = "updatedAt", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
     
-    @Column(name = "status_code", nullable = false)
+    @JsonIgnore
+    @Column(name = "statusCode", nullable = false)
     @Value("${some.key:true}")
-    private boolean status_code;
+    private boolean statusCode;
     
 }

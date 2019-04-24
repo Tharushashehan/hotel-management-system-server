@@ -1,5 +1,6 @@
 package com.hotelmanagementsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
@@ -28,35 +29,41 @@ public class LeaveDetails  implements Serializable {
     @SequenceGenerator(name = "leave_Sequence", sequenceName = "LEAVE_SEQ")
     private Long id;
     
-    @Column(name = "leave_id", nullable = false)
-    private String leave_id;
+    @Column(name = "leaveID", nullable = false)
+    private String leaveID;
     
-    @Column(name = "emp_id", nullable = false)
-    private String emp_id;
+    @Column(name = "empID", nullable = false)
+    private String empID;
     
-    @Column(name = "leave_name", nullable = true)
-    private String leave_name;
+    @Column(name = "leaveType", nullable = true)
+    private String leaveType;
     
-    @Column(name = "starting_date", nullable = true)
-    private Date starting_date;
+    @Column(name = "leaveDurationType", nullable = true)
+    private String leaveDurationType;
     
-    @Column(name = "end_date", nullable = true)
-    private Date end_date;
+    @Column(name = "startingDate", nullable = true)
+    private Date startingDate;
+    
+    @Column(name = "endDate", nullable = true)
+    private Date endDate;
     
     @Column(name = "remark", nullable = true)
     private String remark;
     
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @JsonIgnore
+    @Column(name = "createdAt", nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @JsonIgnore
+    @Column(name = "updatedAt", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updatedAt;
     
-    @Column(name = "status_code", nullable = false)
+    @JsonIgnore
+    @Column(name = "statusCode", nullable = false)
     @Value("${some.key:true}")
-    private boolean status_code;
+    private boolean statusCode;
 }

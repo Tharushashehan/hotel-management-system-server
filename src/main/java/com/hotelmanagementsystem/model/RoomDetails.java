@@ -1,5 +1,6 @@
 package com.hotelmanagementsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
@@ -28,41 +29,41 @@ public class RoomDetails  implements Serializable {
 	    @SequenceGenerator(name = "room_details_Sequence", sequenceName = "ROOM_DETAILS_SEQ")
 	    private Long id;
 	 	
-	 	 @Column(name = "room_id", nullable = false)
-	     private String room_id;
+	 	 @Column(name = "roomID", nullable = false)
+	     private String roomID;
 	     
-	 	 @Column(name = "room_no", nullable = true)
-		 private String room_no;
-	 	  
-	     @Column(name = "room_name", nullable = true)
-	     private String room_name;
+	 	 @Column(name = "roomNo", nullable = true)
+		 private String roomNo;
 	     
-	     @Column(name = "room_type", nullable = true)
-	     private String room_type;
+	     @Column(name = "roomType", nullable = true)
+	     private String roomType;
+
+	     @Column(name = "roomImage", nullable = true)
+	     private String roomImage;
 	     
-	     @Column(name = "room_capacity", nullable = true)
-	     private String room_capacity;
-	  
-	     @Column(name = "room_image", nullable = true)
-	     private String room_image;
+	     @Column(name = "roomAvailability", nullable = true)
+	     private Boolean roomAvailability;
 	     
-	     @Column(name = "availability", nullable = true)
-	     private Boolean availability;
+	     @Column(name = "roomPrice", nullable = true)
+	     private Boolean roomPrice;
 	     
-	     @Column(name = "remark", nullable = true)
-	     private String remark;
+	     @Column(name = "roomDiscription", nullable = true)
+	     private String roomDiscription;
 	     
-	     @Column(name = "created_at", nullable = false, updatable = false)
+	     @JsonIgnore
+	     @Column(name = "createdAt", nullable = false, updatable = false)
 	     @Temporal(TemporalType.TIMESTAMP)
 	     @CreatedDate
 	     private Date createdAt;
 
-	     @Column(name = "updated_at", nullable = false)
+	     @JsonIgnore
+	     @Column(name = "updatedAt", nullable = false)
 	     @Temporal(TemporalType.TIMESTAMP)
 	     @LastModifiedDate
 	     private Date updatedAt;
 	     
-	     @Column(name = "status_code", nullable = false)
+	     @JsonIgnore
+	     @Column(name = "statusCode", nullable = false)
 	     @Value("${some.key:true}")
-	     private boolean status_code;
+	     private boolean statusCode;
 }
