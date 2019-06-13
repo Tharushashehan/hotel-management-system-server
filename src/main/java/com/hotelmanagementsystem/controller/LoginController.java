@@ -2,7 +2,6 @@ package com.hotelmanagementsystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.hotelmanagementsystem.model.LoginUser;
 import com.hotelmanagementsystem.model.User;
 import com.hotelmanagementsystem.repository.UserRepository;
 
