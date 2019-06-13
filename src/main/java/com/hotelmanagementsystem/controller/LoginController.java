@@ -21,10 +21,13 @@ public class LoginController {
 	@GetMapping("/auth/{email}/{password}")
 	public User getUserById(@PathVariable(value = "email") String userId,
 			@PathVariable(value = "password") String userPassword) {
+		System.out.println("login...");
 		User user = userRepository.findByUserEmail(userId);
 		if (userPassword.equals(String.valueOf(user.getUserPassword()))) {
+			System.out.println("pass...");
 			return user;
 		} else {
+			System.out.println("fail...");
 			return null;
 		}
 	}
