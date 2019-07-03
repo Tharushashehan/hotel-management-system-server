@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -19,30 +20,29 @@ import org.springframework.data.annotation.LastModifiedDate;
 @Data
 @Getter
 @Setter
-@Table(name = "hotel")
+@Table(name = "room_check_in")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
-public class Hotel implements Serializable {
+public class RoomCheckIn implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hotel_Sequence")
-	@SequenceGenerator(name = "hotel_Sequence", sequenceName = "HOTEL_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "room_check_in_Sequence")
+	@SequenceGenerator(name = "room_check_in_Sequence", sequenceName = "ROOM_CHECK_IN_SEQ")
 	private Long id;
+	
+	@ManyToOne
+	private RoomDetails roomDetails;
 
-	@Column(name = "hotelName", nullable = true)
-	private String hotelName;
+	@Column(name = "startDate", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date startDate;
 
-	@Column(name = "hotelAddress", nullable = true)
-	private String hotelAddress;
+	@Column(name = "endDate", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date endDate;
 
-	@Column(name = "hotelEmail", nullable = true)
-	private String hotelEmail;
-
-	@Column(name = "hotelWebSite", nullable = true)
-	private String hotelWebSite;
-
-	@Column(name = "hotelImage", nullable = true)
-	private String hotelImage;
+	@Column(name = "remark", nullable = true)
+	private String remark;
 
 	@JsonIgnore
 	@Column(name = "createdAt", nullable = false, updatable = false)
@@ -60,5 +60,4 @@ public class Hotel implements Serializable {
 	@Column(name = "statusCode", nullable = false)
 	@Value("${some.key:true}")
 	private boolean statusCode;
-
 }

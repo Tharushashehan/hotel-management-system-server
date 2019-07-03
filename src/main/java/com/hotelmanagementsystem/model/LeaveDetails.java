@@ -29,9 +29,6 @@ public class LeaveDetails  implements Serializable {
     @SequenceGenerator(name = "leave_Sequence", sequenceName = "LEAVE_SEQ")
     private Long id;
     
-    @Column(name = "leaveID", nullable = false)
-    private String leaveID;
-    
     @Column(name = "empID", nullable = false)
     private String empID;
     

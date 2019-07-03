@@ -2,6 +2,8 @@ package com.hotelmanagementsystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import com.hotelmanagementsystem.exception.ResourceNotFoundException;
 import com.hotelmanagementsystem.model.User;
 import com.hotelmanagementsystem.repository.UserRepository;
 
@@ -17,18 +19,19 @@ public class LoginController {
 	public User getUserById(@PathVariable(value = "email") String userEmail,
 			@PathVariable(value = "password") String userPassword) {
 		System.out.println("login...");
-		User user = userRepository.findByUserEmail(userEmail);
-		if (user != null) {
+		
+		try {
+			User user = userRepository.findByUserEmail(userEmail)	;
 			if (userPassword.equals(user.getUserPassword())) {
 				System.out.println("pass...");
 				return user;
 			} else {
 				return null;
 			}
-		} else {
-			System.out.println("fail...");
+		} catch (Exception e) {
 			return null;
 		}
+
 	}
 
 	@PostMapping("/authPost")

@@ -28,9 +28,6 @@ public class RoomDetails  implements Serializable {
 	    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "room_details_Sequence")
 	    @SequenceGenerator(name = "room_details_Sequence", sequenceName = "ROOM_DETAILS_SEQ")
 	    private Long id;
-	 	
-	 	 @Column(name = "roomID", nullable = false)
-	     private String roomID;
 	     
 	 	 @Column(name = "roomNo", nullable = true)
 		 private String roomNo;

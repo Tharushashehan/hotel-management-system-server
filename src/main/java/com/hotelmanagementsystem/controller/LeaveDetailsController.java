@@ -11,7 +11,7 @@ import com.hotelmanagementsystem.model.LeaveDetails;
 import com.hotelmanagementsystem.repository.LeaveDetailRepository;
 
 @RestController
-@RequestMapping("/leaves")
+// @RequestMapping("/leaves")
 public class LeaveDetailsController {
 	
 	@Autowired
@@ -33,29 +33,29 @@ public class LeaveDetailsController {
 	// Get a Single leaves
 	@GetMapping("/leaves/{id}")
 	public LeaveDetails getLeaveDetailsById(@PathVariable(value = "id") Long leaveId) {
-	    return leaveDetailRepository.findById(userId)
-	            .orElseThrow(() -> new ResourceNotFoundException("Note", "id", userId));
+	    return leaveDetailRepository.findById(leaveId)
+	            .orElseThrow(() -> new ResourceNotFoundException("Note", "id", leaveId));
 	}
 	
-	// Update a user
+	// Update a leave
 	@PutMapping("/leaves/{id}")
-	public LeaveDetails updateLeaveDetails(@PathVariable(value = "id") Long userId, @Valid @RequestBody LeaveDetails userDetails) {
+	public LeaveDetails updateLeaveDetails(@PathVariable(value = "id") Long leaveId, @Valid @RequestBody LeaveDetails leaveDetails) {
 
-		LeaveDetails user = leaveDetailRepository.findById(userId)
-	            .orElseThrow(() -> new ResourceNotFoundException("user", "id", userId));
+		LeaveDetails leave = leaveDetailRepository.findById(leaveId)
+	            .orElseThrow(() -> new ResourceNotFoundException("leave", "id", leaveId));
 
-	    user.setUserFName(userDetails.getUserFName());
-	    user.setUserLName(userDetails.getUserLName());
-	    user.setUserType(userDetails.getUserType());
-	    user.setUserImage(userDetails.getUserImage());
-	    user.setUserAddrs(userDetails.getUserAddrs());
-	    user.setUserPassword(userDetails.getUserPassword());
+		leave.setEmpID(leaveDetails.getEmpID());
+		leave.setStartingDate(leaveDetails.getStartingDate());
+		leave.setEndDate(leaveDetails.getEndDate());
+		leave.setLeaveDurationType(leaveDetails.getLeaveDurationType());
+		leave.setLeaveType(leaveDetails.getLeaveType());
+		leave.setRemark(leaveDetails.getRemark());
 
-	    LeaveDetails updatedNode = leaveDetailRepository.save(user);
+	    LeaveDetails updatedNode = leaveDetailRepository.save(leave);
 	    return updatedNode;
 	}
 	
-	// Delete a user
+	// Delete a leave
 	@DeleteMapping("/leaves/{id}")
 	public Boolean deleteLeaveDetails(@PathVariable(value = "id") Long leaveId) {
 
