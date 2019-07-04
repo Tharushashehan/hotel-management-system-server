@@ -38,9 +38,11 @@ public class LeaveDetails  implements Serializable {
     @Column(name = "leaveDurationType", nullable = true)
     private String leaveDurationType;
     
+    @Temporal(TemporalType.DATE)
     @Column(name = "startingDate", nullable = true)
     private Date startingDate;
     
+    @Temporal(TemporalType.DATE)
     @Column(name = "endDate", nullable = true)
     private Date endDate;
     
