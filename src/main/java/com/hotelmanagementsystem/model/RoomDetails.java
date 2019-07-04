@@ -42,7 +42,7 @@ public class RoomDetails  implements Serializable {
 	     private Boolean roomAvailability;
 	     
 	     @Column(name = "roomPrice", nullable = true)
-	     private Boolean roomPrice;
+	     private String roomPrice;
 	     
 	     @Column(name = "roomDiscription", nullable = true)
 	     private String roomDiscription;
