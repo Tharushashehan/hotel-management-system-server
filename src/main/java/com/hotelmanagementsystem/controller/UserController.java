@@ -37,7 +37,7 @@ public class UserController {
 	}
 
 	// Update a user
-	@PutMapping("/put-user/{id}")
+	@PostMapping("/put-user/{id}")
 	public User updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
 
 		User user = userRepository.findById(userId)
@@ -55,7 +55,7 @@ public class UserController {
 	}
 
 	// Delete a user
-	@DeleteMapping("/delete-user/{id}")
+	@PostMapping("/delete-user/{id}")
 	public Boolean deleteUser(@PathVariable(value = "id") Long userId) {
 
 		try {
