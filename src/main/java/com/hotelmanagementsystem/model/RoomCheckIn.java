@@ -34,11 +34,11 @@ public class RoomCheckIn implements Serializable {
 	private RoomDetails roomDetails;
 
 	@Column(name = "startDate", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
 	private Date startDate;
 
 	@Column(name = "endDate", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
 	private Date endDate;
 
 	@Column(name = "remark", nullable = true)
