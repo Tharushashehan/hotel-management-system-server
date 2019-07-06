@@ -37,8 +37,8 @@ public class UserController {
 	}
 
 	// Update a user
-	@PostMapping("/put-user/{id}")
-	public User updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) {
+	@PostMapping("/put-user/{id}/{password}")
+	public User updateUser(@PathVariable(value = "id") Long userId, @PathVariable(value = "password") String password, @Valid @RequestBody User userDetails) {
 
 		User user = userRepository.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("user", "id", userId));
@@ -48,7 +48,7 @@ public class UserController {
 		user.setUserType(userDetails.getUserType());
 		user.setUserImage(userDetails.getUserImage());
 		user.setUserAddrs(userDetails.getUserAddrs());
-		user.setUserPassword(userDetails.getUserPassword());
+		user.setUserPassword(password);
 
 		User updatedNode = userRepository.save(user);
 		return updatedNode;
