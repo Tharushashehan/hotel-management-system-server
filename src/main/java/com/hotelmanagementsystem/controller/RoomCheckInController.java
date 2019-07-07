@@ -38,8 +38,8 @@ public class RoomCheckInController {
 			System.out.println(room);
 			checkin.setRoomDetails(room);
 			
-			//return roomCheckInRepository.save(checkin);
-			return checkin;
+			return roomCheckInRepository.save(checkin);
+			//return checkin;
 		}else {
 			return null;
 		}
