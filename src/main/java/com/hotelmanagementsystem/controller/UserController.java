@@ -24,8 +24,9 @@ public class UserController {
 	}
 
 	// Create User
-	@PostMapping("/create")
-	public User createUser(@Valid @RequestBody User user) {
+	@PostMapping("/create/{password}")
+	public User createUser(@Valid @RequestBody User user, @PathVariable(value = "password") String userPassword) {
+		user.setUserPassword(userPassword);
 		System.out.println(user);
 		return userRepository.save(user);
 	}
