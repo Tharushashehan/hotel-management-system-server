@@ -34,19 +34,19 @@ public class User  implements Serializable {
     @Column(name = "userId", nullable = false)
     private String userId;
     
-    @Column(name = "userFName", nullable = true)
+    @Column(name = "userFName", nullable = false)
     private String userFName;
     
-    @Column(name = "userLName", nullable = true)
+    @Column(name = "userLName", nullable = false)
     private String userLName;
     
-    @Column(name = "userNIC", nullable = true)
+    @Column(name = "userNIC", nullable = false, unique=true)
     private String userNIC;
     
-    @Column(name = "userEmail", nullable = true)
+    @Column(name = "userEmail", nullable = false, unique=true)
     private String userEmail;
     
-    @Column(name = "userType", nullable = true)
+    @Column(name = "userType", nullable = false)
     private String userType;
     
     @Column(name = "userImage", nullable = true)
@@ -56,7 +56,7 @@ public class User  implements Serializable {
     private String userAddrs;
     
     @JsonIgnore
-    @Column(name = "userPassword", nullable = true)
+    @Column(name = "userPassword", nullable = false)
     private String userPassword;
     
     @JsonIgnore

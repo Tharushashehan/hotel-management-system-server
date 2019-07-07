@@ -29,10 +29,10 @@ public class RoomDetails  implements Serializable {
 	    @SequenceGenerator(name = "room_details_Sequence", sequenceName = "ROOM_DETAILS_SEQ")
 	    private Long id;
 	     
-	 	 @Column(name = "roomNo", nullable = true)
+	 	 @Column(name = "roomNo", nullable = false, unique=true)
 		 private String roomNo;
 	     
-	     @Column(name = "roomType", nullable = true)
+	     @Column(name = "roomType", nullable = false)
 	     private String roomType;
 
 	     @Column(name = "roomImage", nullable = true)
@@ -41,7 +41,7 @@ public class RoomDetails  implements Serializable {
 	     @Column(name = "roomAvailability", nullable = true)
 	     private Boolean roomAvailability;
 	     
-	     @Column(name = "roomPrice", nullable = true)
+	     @Column(name = "roomPrice", nullable = false)
 	     private String roomPrice;
 	     
 	     @Column(name = "roomDiscription", nullable = true)

@@ -10,6 +10,7 @@ import com.hotelmanagementsystem.model.RoomCheckIn;
 import com.hotelmanagementsystem.model.RoomDetails;
 import com.hotelmanagementsystem.repository.RoomCheckInRepository;
 import com.hotelmanagementsystem.repository.RoomDetailRepository;
+import com.hotelmanagementsystem.utils.DateValidation;
 
 @RestController
 public class RoomCheckInController {
@@ -18,6 +19,7 @@ public class RoomCheckInController {
 	RoomCheckInRepository roomCheckInRepository;
 	@Autowired
 	RoomDetailRepository roomDetailRepository;
+	
 
 	// Get All check ins
 	@GetMapping("/checkin")
@@ -27,14 +29,22 @@ public class RoomCheckInController {
 
 	// Create check ins
 	@PostMapping("/rooms/{id}/checkin")
-	public RoomCheckIn createRoomCheckIn(@PathVariable(value = "id") Long roomId,
+	public RoomCheckIn createRoomCheckIn(@PathVariable(value = "id") String roomId,
 			@Valid @RequestBody RoomCheckIn checkin) {
-		RoomDetails room = roomDetailRepository.findById(roomId)
-				.orElseThrow(() -> new ResourceNotFoundException("Note", "id", roomId));
-		System.out.println(room);
-		checkin.setRoomDetails(room);
+		List<RoomCheckIn> checkins = roomCheckInRepository.findAll();
+		if(DateValidation.compareDate(checkin.getStartDate(), checkin.getEndDate()) && DateValidation.dateCollision(checkin.getStartDate(), checkin.getEndDate(), checkins) == 0) {
+			RoomDetails room = roomDetailRepository.findByRoomNo(roomId)
+					.orElseThrow(() -> new ResourceNotFoundException("Note", "id", roomId));
+			System.out.println(room);
+			checkin.setRoomDetails(room);
+			
+			//return roomCheckInRepository.save(checkin);
+			return checkin;
+		}else {
+			return null;
+		}
 		
-		return roomCheckInRepository.save(checkin);
+		
 	}
 
 	// Get a Single check in

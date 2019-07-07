@@ -9,6 +9,7 @@ import java.util.List;
 import com.hotelmanagementsystem.exception.ResourceNotFoundException;
 import com.hotelmanagementsystem.model.LeaveDetails;
 import com.hotelmanagementsystem.repository.LeaveDetailRepository;
+import com.hotelmanagementsystem.utils.DateValidation;
 
 @RestController
 // @RequestMapping("/leaves")
@@ -27,7 +28,10 @@ public class LeaveDetailsController {
 	@PostMapping("/leaves")
 	public LeaveDetails createLeaveDetails(@Valid @RequestBody LeaveDetails leave) {
 		System.out.println(leave);
-	    return leaveDetailRepository.save(leave);
+		if (DateValidation.compareDate(leave.getStartingDate(), leave.getEndDate())) {
+			return leaveDetailRepository.save(leave);
+		}
+	    return null;
 	}
 	
 	// Get a Single leaves

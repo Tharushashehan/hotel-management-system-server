@@ -19,16 +19,13 @@ public class LoginController {
 	public User getUserById(@PathVariable(value = "email") String userEmail,
 			@PathVariable(value = "password") String userPassword) {
 		System.out.println("login...");
-		
-		try {
-			User user = userRepository.findByUserEmail(userEmail)	;
-			if (userPassword.equals(user.getUserPassword())) {
-				System.out.println("pass...");
-				return user;
-			} else {
-				return null;
-			}
-		} catch (Exception e) {
+
+		User user = userRepository.findByUserEmail(userEmail)
+				.orElseThrow(() -> new ResourceNotFoundException("Note", "id", userEmail));
+		if (userPassword.equals(user.getUserPassword())) {
+			System.out.println("pass...");
+			return user;
+		} else {
 			return null;
 		}
 
@@ -39,8 +36,8 @@ public class LoginController {
 			@RequestParam("userPassword") String userPassword) {
 		System.out.println("email : " + userEmail);
 		System.out.println("password : " + userPassword);
-		User user = userRepository.findByUserEmail(userEmail);
-
+		User user = userRepository.findByUserEmail(userEmail)
+				.orElseThrow(() -> new ResourceNotFoundException("Note", "id", userEmail));
 		if (user.getUserPassword() != null) {
 			if (userPassword.equals(user.getUserPassword())) {
 				System.out.println("pass...");
